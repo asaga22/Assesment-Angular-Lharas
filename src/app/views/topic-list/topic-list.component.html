@@ -1,0 +1,66 @@
+<div class="container parent">
+    <div class="article-wrapper">
+        
+        <ng-container *ngFor="let outer of topicIds2Dimensional; let i = index">
+            <div *ngIf="i%2==0" class="article-wrapper-card" >
+                <div *ngFor="let inner of outer"  class="card article-card">
+                    <div class="card-body">
+                        <h5 class="card-title article-title" [innerHTML]="inner.title"></h5>
+                    </div>
+                    <div class="card-footer text-details">
+                        <span class="card-text tc-secondary text-details">
+                            <span class="point">{{inner.score}} points</span>
+                            <span class="source"> by {{inner.by}}</span>
+                        </span>
+                        <hr />
+                        <div class="d-flex align-items-center" style="justify-content:space-between; gap: 4px;">
+                            <div class="d-flex align-items-center" style="gap: 5px;">
+                                <span class="tc-secondary me-2 d-flex" style="gap: 5px;">
+                                    <i class="bi bi-clock"></i> <span [innerHTML]="toRelativeTime(currentDate, inner.time)"></span>
+                                </span>
+                                <span class="badge text-bg-custom-danger" *ngIf="inner.descendants > 30" style="height: fit-content;">Trending</span>
+                            </div>
+                            <a href="#" class="btn btn-custom-secondary text-details" (click)="showDetailsModal($event, inner)">
+                                <div class="d-flex" style="gap:4px;">
+                                    <i class="bi bi-chat-dots"></i> {{inner.descendants}} comments 
+                                </div>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div *ngIf="i%2!=0"class="article-wrapper-list">
+                <ul>
+                    <li *ngFor="let inner of outer" class="d-flex justify-content-space-between">
+                       <div>
+                            <h5 class="card-title article-title mb-4" [innerHTML]="inner.title"></h5>
+                            <div class="article-details text-details d-flex justify-content-space-between" style="gap: 4px;">
+                                <span class="tc-secondary">{{inner.score}} point</span>
+                                <span class="tc-secondary">|</span>
+                                <span class="tc-secondary">{{inner.by}}</span>
+                                <span class="tc-secondary">|</span>
+                                <span class="tc-secondary d-flex" style="gap: 5px;">
+                                    <i class="bi bi-clock"></i> <span [innerHTML]="toRelativeTime(currentDate, inner.time)"></span>
+                                </span>
+                                <span class="badge text-bg-custom-danger" *ngIf="inner.descendants > 30">Trending</span>
+                            </div>
+                       </div>
+                       <a href="#" class="btn btn-custom-secondary text-details" (click)="showDetailsModal($event, inner)">
+                            <div class="d-flex" style="gap:4px;">
+                                <i class="bi bi-chat-dots"></i> {{inner.descendants}} comments 
+                            </div>
+                            <i class="bi bi-arrow-right"></i>
+                       </a>
+                    </li>
+                </ul>
+            </div>
+
+        </ng-container>
+    </div>
+
+    <button class="btn btn-outline-secondary  d-block mx-auto my-4 px-4 text-details" (click)="topicIdsTo2Dimensional(4)">Load more</button>
+</div>
+
+<app-details [selectedTopic]="selectedTopic" ></app-details>

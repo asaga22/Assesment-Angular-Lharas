@@ -1,0 +1,54 @@
+<div class="modal modal-lg fade" id="topic-details-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header d-block">
+               <div class="d-flex" style="justify-content: space-between; margin-bottom: 8px;">
+                    <h1 class="modal-title article-title">{{selectedTopic.title}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="article-details text-details d-flex" style="gap: 4px; justify-content:space-between">
+                    <div class="d-flex" style="gap: 13px;">
+                        <span class="tc-secondary">{{selectedTopic.score}} point</span>
+                        <span class="tc-secondary">|</span>
+                        <span class="tc-secondary">{{selectedTopic.by}}</span>
+                        <span class="tc-secondary">|</span>
+                        <span class="tc-secondary me-2 d-flex" style="gap: 5px;">
+                            <i class="bi bi-clock"></i> <span [innerHTML]="toRelativeTime(currentDate, selectedTopic.time)"></span>
+                        </span>
+                    </div>
+                    <div class="d-flex" style="gap:4px;">
+                        <i class="bi bi-chat-dots"></i> {{selectedTopic.descendants}} comments 
+                    </div>
+                </div>
+
+                <hr  class="mb-0"/>
+            </div>
+
+            <div class="modal-body">
+                <div *ngFor="let comment of comments">
+                    <div class="comment-wrapper mb-2" *ngIf="!comment.deleted && !comment.dead">
+                        <div class="comment-box mb-2">
+                            <h6 class="comment-by comment-title">{{comment.by}}</h6>
+                            <div class="comment-content" [innerHTML]="comment.text"></div>
+                        </div>
+                        <div class="d-flex" style="justify-content: space-between;">
+                            <span [innerHTML]="toRelativeTime(currentDate, comment.time)" class="ms-2"></span>
+                            <a href="#" *ngIf="comment.kids">{{this.comment.kids.length}} replies</a>
+                        </div>
+                    </div>
+                </div>
+                <button 
+                    class="load-comment btn btn-outline-secondary  d-block mx-auto my-4 px-4 text-details"
+                    *ngIf="selectedTopic.kids && commentIndex < selectedTopic.kids.length"
+                    (click)="loadComments(5)">
+                    Load more comments
+                </button>
+                <span class="no-comment text-center" *ngIf="!selectedTopic.kids">No comments yet</span>
+                <span class="no-more-comment text-center" 
+                    *ngIf="selectedTopic.kids && commentIndex >= selectedTopic.kids.length">
+                    No more comments to load
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

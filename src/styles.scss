@@ -1,1 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --color_primary: #FF6600;
+    --color_secondary_lighter: #FFF6F1;
+}
+
+body {
+    background-color: #F5F7FC;
+    font-family: 'Inter', sans-serif;
+}
+
+nav {
+    background-color: white;
+    -webkit-box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+    -moz-box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+    box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+    margin-bottom: 25px;
+    height: 90px;
+}
+
+
+.btn-custom-primary {
+    background-color: #FF6600;
+    color: white;
+    &:hover, &:active {
+        -webkit-box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+        -moz-box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+        box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+    }
+
+}
+
+.btn-custom-secondary {
+    background-color: #FFEADC;
+    color: #FF6600;
+    &:hover, &:active {
+        background-color: #FF6600;
+        color: white;
+        -webkit-box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+        -moz-box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+        box-shadow: 0px 10px 10px 0px rgba(79,97,123,0.1);
+    }
+}
+
+.btn-custom-neutral-white {
+    background-color: white;
+    color: #242424;
+}
+
+.btn-custom-neutral-grey {
+    background-color: #D9D9D9; 
+    color: white;
+}
+
+.text-bg-custom-danger {
+    border-radius: 4px;
+    background: #FF8780;
+    color: white;
+}
+
+.tc-primary {
+    color: #242424;
+}
+.tc-secondary {
+    color: #808080;
+}
+
+.modal-header {
+    border: none;
+}
